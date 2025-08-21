@@ -12,7 +12,7 @@ export type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 export default function Navigation() {
-  const isLoggedIn = false;
+  const isLoggedIn = true;
 
   return (
     <NavigationContainer>
