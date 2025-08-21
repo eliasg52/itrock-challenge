@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from '@/screens/Login';
 import { MainTabs } from './MainTabs';
 import { useUserContext } from '@/context/useUserContext';
+import { ActivityIndicator, View } from 'react-native';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -13,8 +14,15 @@ export type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 export default function Navigation() {
-  const { userToken } = useUserContext();
-  console.log('USER TOKEEEEEN', userToken);
+  const { userToken, isLoading } = useUserContext();
+
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
 
   return (
     <NavigationContainer>
