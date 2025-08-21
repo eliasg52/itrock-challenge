@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Feed from '../screens/Feed';
-import Products from '../screens/Products';
+import Feed from '@/screens/Feed';
+import Products from '@/screens/Products';
 
 export type MainTabsParamList = {
   Feed: undefined;

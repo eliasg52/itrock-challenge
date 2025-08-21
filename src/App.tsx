@@ -1,14 +1,15 @@
-import React from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Navigation from '../src/navigation/Navigation';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaProvider>
+      <QueryClientProvider client={queryClient}>
         <Navigation />
-      </SafeAreaProvider>
+      </QueryClientProvider>
     </GestureHandlerRootView>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from '../screens/Login';
+import Login from '@/screens/Login';
 import { MainTabs } from './MainTabs';
 
 export type RootStackParamList = {
