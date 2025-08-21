@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "itrock",
+    "name": "It Rock",
     "slug": "itrock",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -13,14 +13,16 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.eliasg52.itrock"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.eliasg52.itrock"
     },
     "web": {
       "favicon": "./assets/favicon.png"
