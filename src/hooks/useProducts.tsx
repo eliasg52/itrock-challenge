@@ -3,9 +3,12 @@ import { useQuery } from '@tanstack/react-query';
 
 const getProducts = async () => {
   const fecthData = await fetch(PRODUCTS_URL);
-  const data = await fecthData.json();
-  console.log(data);
 
+  if (!fecthData.ok) {
+    throw new Error('Network response was not ok');
+  }
+
+  const data = await fecthData.json();
   return data;
 };
 

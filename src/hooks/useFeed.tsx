@@ -1,10 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import feedData from '@/data/feedData';
 
+const simulateError = false;
+
 const getFeed = async () => {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(feedData);
+      if (simulateError) {
+        reject(new Error('Network request failed'));
+      } else {
+        resolve(feedData);
+      }
     }, 500);
   });
 };
