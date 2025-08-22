@@ -4,7 +4,9 @@ App de marketplace desarrollada con React Native y Expo.
 
 ## DEMO
 
-<a href="https://www.youtube.com/shorts/1_-ruR5fJfY?feature=share" target="_blank">**Demo iOS** --> Haz clic aquí para ver el video</a>
+<a href="https://www.youtube.com/shorts/1_-ruR5fJfY?feature=share" target="_blank">🍎 **Demo iOS Simulador** Haz clic aquí para ver el video</a>
+
+<a href="https://youtube.com/shorts/5WCsVz6lRoY?feature=share" target="_blank">🤖 **Demo Android mi dispositivo** Haz clic aquí para ver el video</a>
 
 ## Requisitos
 
