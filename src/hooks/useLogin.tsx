@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Alert } from "react-native";
 import { useUserContext } from "@/context/useUserContext";
 import { USER, PASSWORD } from "@/constants";
 
@@ -9,24 +8,31 @@ export const useLogin = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
 
   const handleLogin = async () => {
+    setError("");
+
     if (!username.trim() || !password.trim()) {
-      Alert.alert("Error", "Por favor, ingresá tu usuario y contraseña");
+      setError("Por favor, ingresá tu usuario y contraseña");
       return;
     }
 
     if (username !== USER || password !== PASSWORD) {
-      Alert.alert("Error", "Credenciales incorrectas");
+      setError("Credenciales incorrectas");
       return;
     }
 
     setIsLoading(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    await login?.();
-    setIsLoading(false);
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await login?.();
+    } catch (err) {
+      setError("Error al iniciar sesión. Intentá de nuevo.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -40,6 +46,7 @@ export const useLogin = () => {
     setPassword,
     isLoading,
     showPassword,
+    error,
     handleLogin,
     togglePasswordVisibility,
   };

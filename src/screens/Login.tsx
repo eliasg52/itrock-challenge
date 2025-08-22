@@ -19,6 +19,7 @@ const Login = () => {
     setPassword,
     isLoading,
     showPassword,
+    error,
     handleLogin,
     togglePasswordVisibility,
   } = useLogin();
@@ -57,6 +58,12 @@ const Login = () => {
               onTogglePassword={togglePasswordVisibility}
             />
           </View>
+
+          {error ? (
+            <View style={styles.errorContainer}>
+              <Text style={styles.errorText}>{error}</Text>
+            </View>
+          ) : null}
 
           <CustomButton
             title="Ingresar"
@@ -100,6 +107,18 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     marginBottom: 16,
+  },
+  errorContainer: {
+    backgroundColor: colors.error,
+    borderRadius: 8,
+    padding: 12,
+    marginTop: 16,
+  },
+  errorText: {
+    color: colors.secondary,
+    fontSize: 14,
+    textAlign: "center",
+    fontWeight: "500",
   },
   loginButton: {
     marginTop: 24,

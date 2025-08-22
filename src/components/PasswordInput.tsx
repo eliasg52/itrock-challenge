@@ -9,7 +9,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "@/constants";
 
-interface PasswordInputProps extends Omit<TextInputProps, "secureTextEntry"> {
+interface PasswordInputProps extends TextInputProps {
   placeholder: string;
   showPassword: boolean;
   onTogglePassword: () => void;
