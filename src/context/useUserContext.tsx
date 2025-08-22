@@ -1,11 +1,11 @@
-import { getToken, removeToken, saveToken } from '@/services/storageService';
+import { getToken, removeToken, saveToken } from "@/services/storageService";
 import {
   createContext,
   ReactNode,
   useContext,
   useEffect,
   useState,
-} from 'react';
+} from "react";
 
 type ContextType = {
   userToken: boolean;
@@ -36,7 +36,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
           setIsLoggedIn(true);
         }
       } catch (e) {
-        console.error('Failed to load user token:', e);
+        console.error("Failed to load user token:", e);
       } finally {
         setIsLoading(false);
       }
@@ -50,6 +50,8 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = async () => {
+    // Simular delay de logout
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     await removeToken();
     setIsLoggedIn(false);
   };
@@ -70,7 +72,7 @@ const useUserContext = () => {
   const context = useContext(UserContext);
 
   if (context === undefined) {
-    throw new Error('Provider error');
+    throw new Error("Provider error");
   }
 
   return context;
