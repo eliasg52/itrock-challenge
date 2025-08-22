@@ -17,6 +17,8 @@ App de marketplace desarrollada con React Native y Expo.
 ## Instalación
 
 ```bash
+git clone https://github.com/eliasg52/itrock-challenge
+cd itrock-challenge
 npm install
 npx expo prebuild
 ```
