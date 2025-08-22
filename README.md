@@ -2,6 +2,9 @@
 
 App de marketplace desarrollada con React Native y Expo.
 
+## DEMO
+[![Demo IOS](https://img.youtube.com/vi/1_-ruR5fJfY/0.jpg)](https://www.youtube.com/watch?v=1_-ruR5fJfY)
+
 ## Requisitos
 
 - Node.js v24.1.0
