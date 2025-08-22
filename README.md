@@ -63,6 +63,7 @@ npm run android
 ## Limitaciones
 
 - Datos de feed son estáticos (mock local)
-- Validación de login hardcodeada sin usar archivo .env
+- Validación de login hardcodeada
+- Datos importantes en carpeta constants y no en archivo .env
 - Checkout simulado (no integración real de pagos)
 - Sin paginación en feed (implementable con useInfiniteQuery)
