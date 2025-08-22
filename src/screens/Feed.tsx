@@ -5,7 +5,6 @@ import { View, Text } from 'react-native';
 const Feed = () => {
   const { data } = useFeed();
   const { logout } = useUserContext();
-
   console.log(data);
 
   return (
