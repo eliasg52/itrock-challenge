@@ -86,13 +86,8 @@ export const CheckoutModal = ({
                   <View style={styles.cardInputContainer}>
                     <CreditCardInput
                       autoFocus={false}
-                      requiresName={true}
-                      requiresCVC={true}
-                      requiresPostalCode={false}
                       labelStyle={styles.cardLabel}
                       inputStyle={styles.cardInput}
-                      validColor={colors.success}
-                      invalidColor={colors.error}
                       placeholderColor={colors.textSecondary}
                       onChange={handleCardChange}
                       labels={{

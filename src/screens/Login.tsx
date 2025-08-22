@@ -59,11 +59,9 @@ const Login = () => {
             />
           </View>
 
-          {error ? (
-            <View style={styles.errorContainer}>
-              <Text style={styles.errorText}>{error}</Text>
-            </View>
-          ) : null}
+          <View style={styles.errorContainer}>
+            {error ? <Text style={styles.errorText}>{error}</Text> : null}
+          </View>
 
           <CustomButton
             title="Ingresar"
@@ -109,16 +107,19 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   errorContainer: {
-    backgroundColor: colors.error,
-    borderRadius: 8,
-    padding: 12,
+    minHeight: 48,
     marginTop: 16,
+    marginBottom: 8,
+    justifyContent: "center",
   },
   errorText: {
+    backgroundColor: colors.error,
     color: colors.secondary,
     fontSize: 14,
     textAlign: "center",
     fontWeight: "500",
+    borderRadius: 8,
+    padding: 12,
   },
   loginButton: {
     marginTop: 24,
