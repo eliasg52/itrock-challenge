@@ -11,7 +11,12 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useUserContext } from "@/context/useUserContext";
 import useFeed from "@/hooks/useFeed";
-import { FeedItem as FeedItemComponent } from "@/components";
+import {
+  FeedItem as FeedItemComponent,
+  LoadingState,
+  ErrorState,
+  EmptyState,
+} from "@/components";
 import { colors } from "@/constants";
 import { FeedItem } from "@/types";
 
@@ -23,40 +28,32 @@ const Feed = () => {
   );
 
   const renderEmptyState = () => (
-    <View style={styles.emptyState}>
-      <Ionicons
-        name="chatbubbles-outline"
-        size={64}
-        color={colors.textSecondary}
-      />
-      <Text style={styles.emptyText}>No hay comentarios disponibles</Text>
-    </View>
+    <EmptyState
+      icon="chatbubbles-outline"
+      message="No hay comentarios disponibles"
+    />
   );
 
   const renderErrorState = () => (
-    <View style={styles.errorState}>
-      <Ionicons name="alert-circle-outline" size={64} color={colors.error} />
-      <Text style={styles.errorText}>Error al cargar los comentarios</Text>
-      <TouchableOpacity
-        style={styles.retryButton}
-        onPress={() => window.location.reload()}
-      >
-        <Text style={styles.retryText}>Reintentar</Text>
-      </TouchableOpacity>
-    </View>
+    <ErrorState
+      message="Error al cargar los comentarios"
+      onRetry={() => refetch()}
+    />
   );
 
   if (isLoading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color={colors.primary} />
-        <Text style={styles.loadingText}>Cargando comentarios...</Text>
-      </View>
-    );
+    return <LoadingState message="Cargando comentarios..." />;
   }
 
   if (error) {
-    return <View style={styles.container}>{renderErrorState()}</View>;
+    return (
+      <View style={styles.container}>
+        <ErrorState
+          message="Error al cargar los comentarios"
+          onRetry={() => refetch()}
+        />
+      </View>
+    );
   }
 
   return (
@@ -89,54 +86,6 @@ const styles = StyleSheet.create({
 
   listContainer: {
     paddingVertical: 8,
-  },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: colors.background,
-  },
-  loadingText: {
-    marginTop: 16,
-    fontSize: 16,
-    color: colors.textSecondary,
-  },
-  emptyState: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: 32,
-    paddingVertical: 64,
-  },
-  emptyText: {
-    fontSize: 16,
-    color: colors.textSecondary,
-    textAlign: "center",
-    marginTop: 16,
-  },
-  errorState: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: 32,
-  },
-  errorText: {
-    fontSize: 16,
-    color: colors.error,
-    textAlign: "center",
-    marginTop: 16,
-    marginBottom: 24,
-  },
-  retryButton: {
-    backgroundColor: colors.primary,
-    paddingHorizontal: 24,
-    paddingVertical: 12,
-    borderRadius: 8,
-  },
-  retryText: {
-    color: colors.secondary,
-    fontSize: 16,
-    fontWeight: "600",
   },
 });
 export default Feed;

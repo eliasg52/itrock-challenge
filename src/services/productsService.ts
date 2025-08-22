@@ -1,12 +1,13 @@
-import { PRODUCTS_URL } from '@/constants';
+import { PRODUCTS_URL } from "@/constants";
+import { Product } from "@/types";
 
-export const getProducts = async () => {
-  const fecthData = await fetch(PRODUCTS_URL);
+export const getProducts = async (): Promise<Product[]> => {
+  const fetchData = await fetch(PRODUCTS_URL);
 
-  if (!fecthData.ok) {
-    throw new Error('Network response was not ok');
+  if (!fetchData.ok) {
+    throw new Error("Network response was not ok");
   }
 
-  const data = await fecthData.json();
+  const data = await fetchData.json();
   return data;
 };
