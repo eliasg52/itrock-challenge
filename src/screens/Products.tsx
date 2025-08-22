@@ -1,13 +1,5 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  ActivityIndicator,
-  RefreshControl,
-  TouchableOpacity,
-} from "react-native";
+import { useState } from "react";
+import { View, Text, FlatList, StyleSheet, RefreshControl } from "react-native";
 import useProducts from "@/hooks/useProducts";
 import {
   ProductCard,

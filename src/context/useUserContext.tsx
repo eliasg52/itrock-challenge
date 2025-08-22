@@ -1,4 +1,3 @@
-import { getToken, removeToken, saveToken } from "@/services/storageService";
 import {
   createContext,
   ReactNode,
@@ -6,13 +5,8 @@ import {
   useEffect,
   useState,
 } from "react";
-
-type ContextType = {
-  userToken: boolean;
-  login?: () => void;
-  logout?: () => void;
-  isLoading: boolean;
-};
+import { getToken, removeToken, saveToken } from "@/services/storageService";
+import { ContextType } from "@/types";
 
 const initialState = {
   userToken: false,
@@ -50,7 +44,6 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = async () => {
-    // Simular delay de logout
     await new Promise((resolve) => setTimeout(resolve, 2000));
     await removeToken();
     setIsLoggedIn(false);

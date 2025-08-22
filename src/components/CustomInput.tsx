@@ -1,16 +1,12 @@
-import React from "react";
-import { TextInput, StyleSheet, TextInputProps } from "react-native";
+import { TextInput, StyleSheet } from "react-native";
 import { colors } from "@/constants";
+import { CustomInputProps } from "@/types";
 
-interface CustomInputProps extends TextInputProps {
-  placeholder: string;
-}
-
-export const CustomInput: React.FC<CustomInputProps> = ({
+export const CustomInput = ({
   placeholder,
   style,
   ...props
-}) => {
+}: CustomInputProps) => {
   return (
     <TextInput
       style={[styles.input, style]}

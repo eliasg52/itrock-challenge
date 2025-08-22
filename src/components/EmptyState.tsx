@@ -1,14 +1,9 @@
-import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "@/constants";
+import { EmptyStateProps } from "@/types";
 
-interface EmptyStateProps {
-  icon: string;
-  message: string;
-}
-
-export const EmptyState: React.FC<EmptyStateProps> = ({ icon, message }) => {
+export const EmptyState = ({ icon, message }: EmptyStateProps) => {
   return (
     <View style={styles.container}>
       <Ionicons name={icon as any} size={64} color={colors.textSecondary} />

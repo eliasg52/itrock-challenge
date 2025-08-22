@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Modal,
   View,
@@ -10,21 +9,9 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "@/constants";
+import { CustomModalProps } from "@/types";
 
-interface CustomModalProps {
-  visible: boolean;
-  title: string;
-  message: string;
-  confirmText?: string;
-  cancelText?: string;
-  onConfirm: () => void;
-  onCancel: () => void;
-  icon?: string;
-  iconColor?: string;
-  isLoading?: boolean;
-}
-
-export const CustomModal: React.FC<CustomModalProps> = ({
+export const CustomModal = ({
   visible,
   title,
   message,
@@ -35,7 +22,7 @@ export const CustomModal: React.FC<CustomModalProps> = ({
   icon,
   iconColor = colors.primary,
   isLoading = false,
-}) => {
+}: CustomModalProps) => {
   return (
     <Modal
       visible={visible}

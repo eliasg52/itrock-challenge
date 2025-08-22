@@ -1,4 +1,3 @@
-import React from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Product } from "@/types";
@@ -9,17 +8,14 @@ interface ProductCardProps {
   onPress: (product: Product) => void;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({
-  product,
-  onPress,
-}) => {
+export const ProductCard = ({ product, onPress }: ProductCardProps) => {
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("es-AR", {
       style: "currency",
       currency: "ARS",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
-    }).format(price * 1000); // Multiplicar por 1000 para simular pesos argentinos
+    }).format(price * 1000);
   };
 
   const truncateTitle = (title: string, maxLength: number = 50) => {

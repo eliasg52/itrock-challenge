@@ -1,14 +1,10 @@
-import React from "react";
 import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
 import { colors } from "@/constants";
+import { LoadingStateProps } from "@/types";
 
-interface LoadingStateProps {
-  message?: string;
-}
-
-export const LoadingState: React.FC<LoadingStateProps> = ({
+export const LoadingState = ({
   message = "Cargando...",
-}) => {
+}: LoadingStateProps) => {
   return (
     <View style={styles.container}>
       <ActivityIndicator size="large" color={colors.primary} />

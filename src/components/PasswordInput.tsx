@@ -1,27 +1,15 @@
-import React from "react";
-import {
-  View,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  TextInputProps,
-} from "react-native";
+import { View, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "@/constants";
+import { PasswordInputProps } from "@/types";
 
-interface PasswordInputProps extends TextInputProps {
-  placeholder: string;
-  showPassword: boolean;
-  onTogglePassword: () => void;
-}
-
-export const PasswordInput: React.FC<PasswordInputProps> = ({
+export const PasswordInput = ({
   placeholder,
   showPassword,
   onTogglePassword,
   style,
   ...props
-}) => {
+}: PasswordInputProps) => {
   return (
     <View style={styles.passwordContainer}>
       <TextInput

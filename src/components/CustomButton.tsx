@@ -1,27 +1,20 @@
-import React from "react";
 import {
   TouchableOpacity,
   Text,
   StyleSheet,
   ActivityIndicator,
-  TouchableOpacityProps,
 } from "react-native";
 import { colors } from "@/constants";
+import { CustomButtonProps } from "@/types";
 
-interface CustomButtonProps extends TouchableOpacityProps {
-  title: string;
-  isLoading?: boolean;
-  variant?: "primary" | "secondary";
-}
-
-export const CustomButton: React.FC<CustomButtonProps> = ({
+export const CustomButton = ({
   title,
   isLoading = false,
   variant = "primary",
   style,
   disabled,
   ...props
-}) => {
+}: CustomButtonProps) => {
   const isPrimary = variant === "primary";
   const isDisabled = disabled || isLoading;
 

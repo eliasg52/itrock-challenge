@@ -1,10 +1,9 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import Login from '@/screens/Login';
-import { MainTabs } from './MainTabs';
-import { useUserContext } from '@/context/useUserContext';
-import { ActivityIndicator, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import Login from "@/screens/Login";
+import { MainTabs } from "./MainTabs";
+import { useUserContext } from "@/context/useUserContext";
+import { ActivityIndicator, View } from "react-native";
 
 export type RootStackParamList = {
   Login: undefined;
@@ -18,7 +17,7 @@ export default function Navigation() {
 
   if (isLoading) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator size="large" />
       </View>
     );

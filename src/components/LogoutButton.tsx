@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { TouchableOpacity, ActivityIndicator, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useUserContext } from "@/context/useUserContext";
 import { colors } from "@/constants";
 import { CustomModal } from "./CustomModal";
 
-export const LogoutButton: React.FC = () => {
+export const LogoutButton = () => {
   const { logout } = useUserContext();
   const [showModal, setShowModal] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);

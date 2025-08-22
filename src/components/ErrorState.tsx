@@ -1,19 +1,13 @@
-import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "@/constants";
+import { ErrorStateProps } from "@/types";
 
-interface ErrorStateProps {
-  message?: string;
-  onRetry: () => void;
-  retryText?: string;
-}
-
-export const ErrorState: React.FC<ErrorStateProps> = ({
+export const ErrorState = ({
   message = "Error al cargar los datos",
   onRetry,
   retryText = "Reintentar",
-}) => {
+}: ErrorStateProps) => {
   return (
     <View style={styles.container}>
       <Ionicons name="alert-circle-outline" size={64} color={colors.error} />

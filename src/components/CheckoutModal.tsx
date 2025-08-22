@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   Modal,
   View,
@@ -12,37 +11,23 @@ import {
 import { CreditCardInput } from "react-native-credit-card-input";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "@/constants";
-import { Product } from "@/types";
+import { CheckoutModalProps } from "@/types";
 import { CustomButton } from "./CustomButton";
+import { useCheckout } from "@/hooks/useCheckout";
 
-interface CheckoutModalProps {
-  visible: boolean;
-  product: Product | null;
-  onClose: () => void;
-}
-
-export const CheckoutModal: React.FC<CheckoutModalProps> = ({
+export const CheckoutModal = ({
   visible,
   product,
   onClose,
-}) => {
-  const [cardData, setCardData] = useState<any>(null);
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [validationError, setValidationError] = useState("");
-  const [purchaseResult, setPurchaseResult] = useState<{
-    success: boolean;
-    message: string;
-  } | null>(null);
-
-  // Resetear estado cuando se abre/cierra el modal
-  React.useEffect(() => {
-    if (visible) {
-      setCardData(null);
-      setIsProcessing(false);
-      setValidationError("");
-      setPurchaseResult(null);
-    }
-  }, [visible]);
+}: CheckoutModalProps) => {
+  const {
+    isProcessing,
+    validationError,
+    purchaseResult,
+    handleCardChange,
+    handlePurchase,
+    handleContinue,
+  } = useCheckout(visible);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("es-AR", {
@@ -51,62 +36,6 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(price * 1000);
-  };
-
-  const handlePurchase = async () => {
-    // Limpiar error previo
-    setValidationError("");
-
-    // Validar campos vacíos - estructura correcta de react-native-credit-card-input
-    if (!cardData || !cardData.values) {
-      setValidationError("Por favor, completá todos los campos de la tarjeta");
-      return;
-    }
-
-    const { number, expiry, cvc } = cardData.values;
-
-    // Verificar que los campos no estén vacíos o solo con espacios
-    if (!number?.trim() || !expiry?.trim() || !cvc?.trim()) {
-      setValidationError("Por favor, completá todos los campos de la tarjeta");
-      return;
-    }
-
-    setIsProcessing(true);
-
-    try {
-      // Simular delay de procesamiento
-      await new Promise((resolve) => setTimeout(resolve, 3000));
-
-      // Simular éxito/error (90% éxito si la tarjeta es válida, 10% error)
-      const isSuccess = cardData?.valid && Math.random() > 0.1;
-
-      if (isSuccess) {
-        setPurchaseResult({
-          success: true,
-          message: "¡Compra realizada con éxito!",
-        });
-      } else {
-        setPurchaseResult({
-          success: false,
-          message: "Error al procesar el pago. Intentá de nuevo.",
-        });
-      }
-    } catch (error) {
-      setPurchaseResult({
-        success: false,
-        message: "Error inesperado. Intentá de nuevo.",
-      });
-    } finally {
-      setIsProcessing(false);
-    }
-  };
-
-  const handleContinue = () => {
-    if (purchaseResult?.success) {
-      onClose();
-    } else {
-      setPurchaseResult(null);
-    }
   };
 
   if (!product) return null;
@@ -133,7 +62,6 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
           >
             {!purchaseResult ? (
               <>
-                {/* Producto seleccionado */}
                 <View style={styles.productSection}>
                   <Text style={styles.sectionTitle}>Producto</Text>
                   <View style={styles.productCard}>
@@ -153,7 +81,6 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                   </View>
                 </View>
 
-                {/* Datos de la tarjeta */}
                 <View style={styles.cardSection}>
                   <Text style={styles.sectionTitle}>Datos de la Tarjeta</Text>
                   <View style={styles.cardInputContainer}>
@@ -167,23 +94,16 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                       validColor={colors.success}
                       invalidColor={colors.error}
                       placeholderColor={colors.textSecondary}
-                      onChange={(form) => {
-                        setCardData(form);
-                        if (validationError) {
-                          setValidationError("");
-                        }
-                      }}
+                      onChange={handleCardChange}
                       labels={{
                         number: "NÚMERO DE TARJETA",
                         expiry: "VENCIMIENTO",
                         cvc: "CVC",
-                        name: "NOMBRE EN LA TARJETA",
                       }}
                       placeholders={{
                         number: "1234 5678 9012 3456",
                         expiry: "MM/YY",
                         cvc: "CVC",
-                        name: "NOMBRE COMPLETO",
                       }}
                     />
 
@@ -201,7 +121,6 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 </View>
               </>
             ) : (
-              /* Resultado de la compra */
               <View style={styles.resultSection}>
                 <View style={styles.resultIconContainer}>
                   <Ionicons
@@ -248,7 +167,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 title={
                   purchaseResult.success ? "Continuar" : "Intentar de Nuevo"
                 }
-                onPress={handleContinue}
+                onPress={() => handleContinue(onClose)}
                 style={[
                   styles.purchaseButton,
                   purchaseResult.success && styles.successButton,
@@ -262,7 +181,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   );
 };
 
-const { width, height } = Dimensions.get("window");
+const { height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   overlay: {

@@ -1,15 +1,5 @@
-import React from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  ActivityIndicator,
-  RefreshControl,
-  TouchableOpacity,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { useUserContext } from "@/context/useUserContext";
+import { View, FlatList, StyleSheet, RefreshControl } from "react-native";
+
 import useFeed from "@/hooks/useFeed";
 import {
   FeedItem as FeedItemComponent,
@@ -31,13 +21,6 @@ const Feed = () => {
     <EmptyState
       icon="chatbubbles-outline"
       message="No hay comentarios disponibles"
-    />
-  );
-
-  const renderErrorState = () => (
-    <ErrorState
-      message="Error al cargar los comentarios"
-      onRetry={() => refetch()}
     />
   );
 

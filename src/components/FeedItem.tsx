@@ -1,14 +1,9 @@
-import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { FeedItem as FeedItemType } from "@/types";
+import { FeedItem as FeedItemType, FeedItemProps } from "@/types";
 import { colors } from "@/constants";
 import { Avatar } from "./Avatar";
 
-interface FeedItemProps {
-  item: FeedItemType;
-}
-
-export const FeedItem: React.FC<FeedItemProps> = ({ item }) => {
+export const FeedItem = ({ item }: FeedItemProps) => {
   const formatDate = (timestamp: string) => {
     const date = new Date(timestamp);
     return date.toLocaleString("es-AR", {

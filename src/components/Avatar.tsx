@@ -1,18 +1,8 @@
-import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import { colors } from "@/constants";
+import { AvatarProps } from "@/types";
 
-interface AvatarProps {
-  fullName: string;
-  avatarUrl?: string | null;
-  size?: number;
-}
-
-export const Avatar: React.FC<AvatarProps> = ({
-  fullName,
-  avatarUrl,
-  size = 48,
-}) => {
+export const Avatar = ({ fullName, avatarUrl, size = 48 }: AvatarProps) => {
   const getInitials = (name: string) => {
     return name
       .split(" ")
