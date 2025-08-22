@@ -55,17 +55,22 @@ export const CustomModal: React.FC<CustomModalProps> = ({
           <Text style={styles.message}>{message}</Text>
 
           <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={[styles.cancelButton, isLoading && styles.disabledButton]}
-              onPress={onCancel}
-              disabled={isLoading}
-            >
-              <Text style={styles.cancelButtonText}>{cancelText}</Text>
-            </TouchableOpacity>
+            {cancelText && (
+              <TouchableOpacity
+                style={[
+                  styles.cancelButton,
+                  isLoading && styles.disabledButton,
+                ]}
+                onPress={onCancel}
+                disabled={isLoading}
+              >
+                <Text style={styles.cancelButtonText}>{cancelText}</Text>
+              </TouchableOpacity>
+            )}
 
             <TouchableOpacity
               style={[
-                styles.confirmButton,
+                cancelText ? styles.confirmButton : styles.singleButton,
                 isLoading && styles.confirmButtonDisabled,
               ]}
               onPress={onConfirm}
@@ -131,6 +136,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     gap: 12,
+  },
+  singleButton: {
+    flex: 1,
+    height: 48,
+    backgroundColor: colors.primary,
+    borderRadius: 12,
+    justifyContent: "center",
+    alignItems: "center",
   },
   cancelButton: {
     flex: 1,

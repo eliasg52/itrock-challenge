@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -8,22 +8,30 @@ import {
   RefreshControl,
   TouchableOpacity,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import useProducts from "@/hooks/useProducts";
 import {
   ProductCard,
   LoadingState,
   ErrorState,
   EmptyState,
+  CheckoutModal,
 } from "@/components";
 import { colors } from "@/constants";
 import { Product } from "@/types";
 
 const Products = () => {
   const { data, error, isLoading, refetch } = useProducts();
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [showCheckout, setShowCheckout] = useState(false);
 
   const handleProductPress = (product: Product) => {
-    console.log("Producto seleccionado:", product.title);
+    setSelectedProduct(product);
+    setShowCheckout(true);
+  };
+
+  const handleCloseCheckout = () => {
+    setShowCheckout(false);
+    setSelectedProduct(null);
   };
 
   const renderProduct = ({ item }: { item: Product }) => (
@@ -34,13 +42,6 @@ const Products = () => {
     <EmptyState
       icon="storefront-outline"
       message="No hay productos disponibles"
-    />
-  );
-
-  const renderErrorState = () => (
-    <ErrorState
-      message="Error al cargar los productos"
-      onRetry={() => refetch()}
     />
   );
 
@@ -76,6 +77,11 @@ const Products = () => {
           />
         }
         ListEmptyComponent={renderEmptyState}
+      />
+      <CheckoutModal
+        visible={showCheckout}
+        product={selectedProduct}
+        onClose={handleCloseCheckout}
       />
     </View>
   );

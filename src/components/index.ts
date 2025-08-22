@@ -9,3 +9,4 @@ export { ProductCard } from "./ProductCard";
 export { LoadingState } from "./LoadingState";
 export { ErrorState } from "./ErrorState";
 export { EmptyState } from "./EmptyState";
+export { CheckoutModal } from "./CheckoutModal";
