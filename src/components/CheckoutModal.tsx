@@ -341,12 +341,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     borderRadius: 12,
     padding: 16,
+    minHeight: 200,
   },
   cardLabel: {
     fontSize: 12,
     fontWeight: "600",
     color: colors.text,
-    marginBottom: 2,
+    marginBottom: 6,
+    marginTop: 4,
   },
   cardInput: {
     fontSize: 16,
@@ -356,8 +358,9 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     borderRadius: 8,
     paddingHorizontal: 12,
-    paddingVertical: 12,
-    marginBottom: 12,
+    paddingVertical: 14,
+    marginBottom: 16,
+    minHeight: 48,
   },
   footer: {
     paddingHorizontal: 20,
